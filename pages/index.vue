@@ -4,8 +4,26 @@ import { computed, onMounted, onUnmounted, ref } from 'vue'
 const weddingDate = new Date('2027-09-18T16:00:00')
 const now = ref(new Date())
 let countdownTimer: ReturnType<typeof setInterval> | undefined
-onMounted(() => { countdownTimer = setInterval(() => { now.value = new Date() }, 1000) })
-onUnmounted(() => { if (countdownTimer) clearInterval(countdownTimer) })
+let revealObserver: IntersectionObserver | undefined
+onMounted(() => {
+  countdownTimer = setInterval(() => { now.value = new Date() }, 1000)
+  revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible')
+        revealObserver?.unobserve(entry.target)
+      }
+    })
+  }, { threshold: 0.14 })
+  document.querySelectorAll('.sage-model main > section:not(.cover)').forEach((section) => {
+    section.classList.add('reveal-on-scroll')
+    revealObserver?.observe(section)
+  })
+})
+onUnmounted(() => {
+  if (countdownTimer) clearInterval(countdownTimer)
+  revealObserver?.disconnect()
+})
 const countdown = computed(() => { const ms = Math.max(0, weddingDate.getTime() - now.value.getTime()); return { days: Math.floor(ms / 86400000), hours: Math.floor(ms % 86400000 / 3600000), minutes: Math.floor(ms % 3600000 / 60000), seconds: Math.floor(ms % 60000 / 1000) } })
 const guestName = ref('')
 const email = ref('')
@@ -116,4 +134,32 @@ function sendReply() {
 .sage-model .reply-section{background:var(--cream);padding:95px 20px;text-align:center}.sage-model .reply-intro{font-size:12px;color:var(--muted);margin-bottom:35px}.sage-model form{max-width:490px;margin:auto;text-align:left;display:grid;gap:16px}.sage-model form>label,.sage-model fieldset{display:grid;gap:8px;font-size:10px;letter-spacing:.06em;color:var(--sage-dark)}.sage-model input:not([type=radio]),.sage-model select,.sage-model textarea{width:100%;padding:13px 14px;border:1px solid #d8d9cf;background:#fbfaf6;font:12px 'DM Sans',sans-serif;color:var(--ink);border-radius:0}.sage-model fieldset{border:0;padding:0;margin:0}.sage-model fieldset legend{margin-bottom:10px}.sage-model .choice{display:flex;align-items:center;gap:10px;font-size:11px;color:var(--muted);letter-spacing:0}.sage-model .choice input{accent-color:var(--sage)}.sage-model form button{border:0;background:var(--sage);color:white;padding:15px;letter-spacing:.1em;font:11px 'DM Sans',sans-serif;cursor:pointer}.sage-model form button span{margin-left:8px}.sage-model .demo-note{display:block;margin-top:20px;color:#929388;font-size:9px}.sage-model .success{padding:30px}.sage-model .success h3{font:30px 'Italiana',serif}.sage-model footer{text-align:center;padding:45px 20px;background:#e8ebe1}.sage-model .footer-brand{font-size:35px}.sage-model footer .script{font-size:19px}.sage-model footer small{font-size:8px;letter-spacing:.18em}.sage-model footer a{color:var(--sage);text-decoration:underline;text-underline-offset:3px}
 @media(max-width:700px){.sage-model .site-header{height:65px;padding:0 5%}.sage-model nav{gap:13px;font-size:8px}.sage-model .header-date{display:none}.sage-model .cover{grid-template-columns:1fr;padding:55px 7% 75px;gap:35px}.sage-model .cover-art{height:350px}.sage-model .arch-photo{width:78%}.sage-model .cover-bottom{left:7%;right:7%;font-size:7px}.sage-model .section{padding:75px 7%}.sage-model .celebration-grid{grid-template-columns:1fr;gap:30px}.sage-model .celebration-image{height:330px}.sage-model .practical-grid{grid-template-columns:1fr 1fr}.sage-model .practical-grid article{padding:22px 17px;min-height:260px}.sage-model .legend{flex-wrap:wrap;gap:12px}.sage-model .quote-band .script{font-size:22px}}
 @media(max-width:700px){.sage-model .timeline:before{left:91px}.sage-model .timeline-item{grid-template-columns:70px 42px 1fr}.sage-model .timeline-time{font-size:21px;padding-right:12px}.sage-model .timeline-content{padding-left:12px}.sage-model .timeline-content h3{font-size:23px}}\n@media(max-width:420px){.sage-model nav{gap:9px}.sage-model nav a{font-size:7px}.sage-model .practical-grid{grid-template-columns:1fr}.sage-model .practical-grid article{min-height:0}.sage-model .practical-grid p{min-height:0}.sage-model .cover-art{height:300px}}
-</style>
+
+/* Animations visibles et élégantes */
+.sage-model .cover-copy{animation:heroCopyIn 1.15s cubic-bezier(.2,.75,.25,1) both}
+.sage-model .cover-art{animation:heroImageIn 1.35s .12s cubic-bezier(.2,.75,.25,1) both}
+.sage-model .cover-stamp{animation:stampPop .8s .85s both}
+.sage-model .fine-line span{animation:lineGrow 1.1s .7s both;transform-origin:center}
+.sage-model .arch-photo{animation:photoFloat 6s ease-in-out 1.5s infinite}
+.sage-model .reveal-on-scroll{opacity:0;transform:translateY(48px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+.sage-model .reveal-on-scroll.is-visible{opacity:1;transform:translateY(0)}
+.sage-model .timeline-item{opacity:0;transform:translateX(-24px);transition:opacity .7s ease,transform .7s ease}
+.sage-model .is-visible .timeline-item{opacity:1;transform:translateX(0)}
+.sage-model .is-visible .timeline-item:nth-child(2){transition-delay:.18s}
+.sage-model .is-visible .timeline-item:nth-child(3){transition-delay:.36s}
+.sage-model .countdown-grid strong{display:inline-block;animation:numberFloat 2.8s ease-in-out infinite}
+.sage-model .countdown-grid div:nth-child(2) strong{animation-delay:.2s}
+.sage-model .countdown-grid div:nth-child(3) strong{animation-delay:.4s}
+.sage-model .countdown-grid div:nth-child(4) strong{animation-delay:.6s}
+.sage-model .pill-link,.sage-model form button{transition:transform .3s ease,box-shadow .3s ease,background .3s ease}
+.sage-model .pill-link:hover,.sage-model form button:hover{transform:translateY(-4px);box-shadow:0 12px 25px #46534225}
+.sage-model .practical-grid article{transition:transform .35s ease,background .35s ease}
+.sage-model .practical-grid article:hover{transform:translateY(-7px);background:#eef0e8}
+@keyframes heroCopyIn{from{opacity:0;transform:translateY(35px)}to{opacity:1;transform:translateY(0)}}
+@keyframes heroImageIn{from{opacity:0;transform:translateX(45px) scale(.96)}to{opacity:1;transform:translateX(0) scale(1)}}
+@keyframes stampPop{0%{opacity:0;transform:scale(.5) rotate(-18deg)}75%{transform:scale(1.12) rotate(5deg)}100%{opacity:1;transform:scale(1) rotate(0)}}
+@keyframes lineGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes photoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes numberFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@media(prefers-reduced-motion:reduce){.sage-model *, .sage-model *::before,.sage-model *::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.sage-model .reveal-on-scroll{opacity:1;transform:none}}
+\n</style>
