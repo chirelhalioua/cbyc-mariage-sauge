@@ -29,6 +29,8 @@ const guestName = ref('')
 const email = ref('')
 const attendance = ref('oui')
 const guests = ref('2')
+const guestsOpen = ref(false)
+function chooseGuests(value: string) { guests.value = value; guestsOpen.value = false }
 const note = ref('')
 const sent = ref(false)
 
@@ -111,7 +113,17 @@ function sendReply() {
         <label>Nom et prénom<input v-model="guestName" required placeholder="Votre nom"></label>
         <label>Adresse e-mail<input v-model="email" type="email" required placeholder="vous@exemple.fr"></label>
         <fieldset><legend>Votre réponse</legend><label class="choice"><input v-model="attendance" type="radio" value="oui"> Avec plaisir, je serai présent(e)</label><label class="choice"><input v-model="attendance" type="radio" value="non"> Je ne pourrai malheureusement pas venir</label></fieldset>
-        <label>Nombre de personnes<select v-model="guests"><option value="1">1 personne</option><option value="2">2 personnes</option><option value="3">3 personnes</option><option value="4">4 personnes</option></select></label>
+        <div class="guest-picker">
+          <span class="field-label">Nombre de personnes</span>
+          <button class="guest-trigger" type="button" :aria-expanded="guestsOpen" @click="guestsOpen = !guestsOpen">
+            <span>{{ guests }} {{ guests === '1' ? 'personne' : 'personnes' }}</span><span class="guest-chevron" :class="{ open: guestsOpen }">⌄</span>
+          </button>
+          <div v-if="guestsOpen" class="guest-options">
+            <button v-for="count in ['1','2','3','4']" :key="count" type="button" :class="{ selected: guests === count }" @click="chooseGuests(count)">
+              <span>{{ count }} {{ count === '1' ? 'personne' : 'personnes' }}</span><span class="guest-check">{{ guests === count ? '✓' : '' }}</span>
+            </button>
+          </div>
+        </div>
         <label>Un petit mot (facultatif)<textarea v-model="note" rows="3" placeholder="Une pensée pour les futurs mariés…"></textarea></label>
         <button type="submit">Envoyer ma réponse <span>♡</span></button>
       </form>
@@ -162,4 +174,18 @@ function sendReply() {
 @keyframes photoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 @keyframes numberFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
 @media(prefers-reduced-motion:reduce){.sage-model *, .sage-model *::before,.sage-model *::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.sage-model .reveal-on-scroll{opacity:1;transform:none}}
+\n
+.sage-model .guest-picker{position:relative;display:grid;gap:8px}
+.sage-model .field-label{font-size:10px;letter-spacing:.06em;color:var(--sage-dark)}
+.sage-model .guest-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;padding:15px 16px;border:1px solid #cbd2c4;background:#fbfaf6;color:var(--ink);font:13px 'DM Sans',sans-serif;text-align:left;cursor:pointer;transition:border-color .25s,box-shadow .25s}
+.sage-model .guest-trigger:hover,.sage-model .guest-trigger[aria-expanded=true]{border-color:var(--sage);box-shadow:0 5px 18px #46534212}
+.sage-model .guest-chevron{font-size:21px;color:var(--sage);transition:transform .25s}
+.sage-model .guest-chevron.open{transform:rotate(180deg)}
+.sage-model .guest-options{position:absolute;z-index:5;left:0;right:0;top:calc(100% + 5px);padding:7px;background:#fbfaf6;border:1px solid #d9ded3;box-shadow:0 14px 35px #34392f20;animation:guestMenuIn .18s ease-out}
+.sage-model .guest-options button{width:100%;display:flex;align-items:center;justify-content:space-between;padding:13px 12px;border:0;border-bottom:1px solid #eceee7;background:transparent;color:var(--ink);font:12px 'DM Sans',sans-serif;text-align:left;cursor:pointer;transition:background .2s,color .2s}
+.sage-model .guest-options button:last-child{border-bottom:0}
+.sage-model .guest-options button:hover,.sage-model .guest-options button.selected{background:#e8ebe1;color:var(--sage-dark)}
+.sage-model .guest-check{width:22px;height:22px;border:1px solid #bdc7b7;border-radius:50%;display:grid;place-items:center;color:white;font-size:12px}
+.sage-model .guest-options button.selected .guest-check{background:var(--sage);border-color:var(--sage)}
+@keyframes guestMenuIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
 \n</style>
