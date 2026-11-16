@@ -24,7 +24,7 @@ function sendReply() {
   <main class="sage-model">
     <header class="site-header">
       <a class="brand" href="#top">É<span>·</span>A</a>
-      <nav><a href="#details">La célébration</a><a href="#practical">Informations</a><a href="#reply">Réponse</a></nav>
+      <nav><a href="#details">La célébration</a><a href="#countdown">Décompte</a><a href="#map">Carte</a><a href="#reply">Réponse</a></nav>
       <a class="header-date" href="#practical">18 SEPT. 2027</a>
     </header>
 
@@ -74,10 +74,10 @@ function sendReply() {
       <div class="practical-grid">
         <article><span class="tag included">Inclus</span><div class="card-icon">⌖</div><h3>Le lieu</h3><p>Mas des Oliviers<br>Route des Lavandes, Aix-en-Provence</p><a href="https://www.google.com/maps/search/?api=1&query=Mas+des+Oliviers+Aix-en-Provence" target="_blank" rel="noopener noreferrer">Voir l'itinéraire ↗</a><small>Un lien direct vers le lieu sur Google Maps.</small></article>
         <article><span class="tag included">Inclus</span><div class="card-icon">✉</div><h3>Votre invitation</h3><p>Retrouvez ici les informations essentielles de notre journée et confirmez votre présence.</p><a href="#reply">Répondre à l'invitation ↓</a></article>
-        <article><span class="tag optional">Option</span><div class="card-icon">◷</div><h3>Compte à rebours</h3><p>Un joli décompte pour patienter jusqu'au grand jour.</p><small>Animation personnalisée avant l'événement.</small></article>
-        <article><span class="tag optional">Option</span><div class="card-icon">▤</div><h3>Programme détaillé</h3><p>Les horaires et les temps forts de votre célébration, présentés en détail.</p><small>Une frise chronologique personnalisée.</small></article>
-        <article><span class="tag optional">Option</span><div class="card-icon">⌖</div><h3>Carte interactive</h3><p>Plusieurs lieux réunis sur une même carte : cérémonie, réception, hébergement…</p><small>À distinguer du simple lien d'itinéraire inclus.</small></article>
-        <article><span class="tag optional">Option</span><div class="card-icon">♡</div><h3>Réponse des invités</h3><p>Un formulaire RSVP personnalisé pour centraliser les réponses de vos proches.</p><small>Confirmation de présence et informations utiles.</small></article>
+        <article><span class="tag optional">Option personnalisable</span><div class="card-icon">◷</div><h3>Compte à rebours</h3><p>Un joli décompte pour patienter jusqu'au grand jour.</p><small>Animation personnalisée avant l'événement.</small></article>
+        <article><span class="tag optional">Option personnalisable</span><div class="card-icon">▤</div><h3>Programme détaillé</h3><p>Les horaires et les temps forts de votre célébration, présentés en détail.</p><small>Une frise chronologique personnalisée.</small></article>
+        <article><span class="tag optional">Option personnalisable</span><div class="card-icon">⌖</div><h3>Carte interactive</h3><p>Plusieurs lieux réunis sur une même carte : cérémonie, réception, hébergement…</p><small>À distinguer du simple lien d'itinéraire inclus.</small></article>
+        <article><span class="tag optional">Option personnalisable</span><div class="card-icon">♡</div><h3>Réponse des invités</h3><p>Un formulaire RSVP personnalisé pour centraliser les réponses de vos proches.</p><small>Confirmation de présence et informations utiles.</small></article>
       </div>
       <p class="legend"><span><i class="dot green"></i> Inclus dans la formule</span><span><i class="dot rose"></i> Option en supplément</span></p>
     </section>
