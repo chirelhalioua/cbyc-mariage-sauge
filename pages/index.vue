@@ -75,7 +75,6 @@ function sendReply() {
         <article><span class="tag included">Inclus</span><div class="card-icon">⌖</div><h3>Le lieu</h3><p>Mas des Oliviers<br>Route des Lavandes, Aix-en-Provence</p><a href="https://www.google.com/maps/search/?api=1&query=Mas+des+Oliviers+Aix-en-Provence" target="_blank" rel="noopener noreferrer">Voir l'itinéraire ↗</a><small>Un lien direct vers le lieu sur Google Maps.</small></article>
         <article><span class="tag included">Inclus</span><div class="card-icon">✉</div><h3>Votre invitation</h3><p>Retrouvez ici les informations essentielles de notre journée et confirmez votre présence.</p><a href="#reply">Répondre à l'invitation ↓</a></article>
         <article><span class="tag optional">Option personnalisable</span><div class="card-icon">▤</div><h3>Programme détaillé</h3><p>Les horaires et les temps forts de votre célébration, présentés en détail.</p><small>Une frise chronologique personnalisée.</small></article>
-        <article><span class="tag optional">Option personnalisable</span><div class="card-icon">♡</div><h3>Réponse des invités</h3><p>Un formulaire RSVP personnalisé pour centraliser les réponses de vos proches.</p><small>Confirmation de présence et informations utiles.</small></article>
       </div>
       <p class="legend"><span><i class="dot green"></i> Inclus dans la formule</span><span><i class="dot rose"></i> Option en supplément</span></p>
     </section>
