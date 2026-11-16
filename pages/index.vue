@@ -81,11 +81,6 @@ function sendReply() {
 
     <section id="practical" class="practical section">
       <div class="section-title"><p class="kicker">POUR PRÉPARER VOTRE VENUE</p><p class="script">Quelques détails pratiques</p><h2>Tout simplement <em>l'essentiel</em></h2></div>
-      <div class="practical-grid">
-        <article><span class="tag included">Inclus</span><div class="card-icon">⌖</div><h3>Le lieu</h3><p>Mas des Oliviers<br>Route des Lavandes, Aix-en-Provence</p><a href="https://www.google.com/maps/search/?api=1&query=Mas+des+Oliviers+Aix-en-Provence" target="_blank" rel="noopener noreferrer">Voir l'itinéraire ↗</a><small>Un lien direct vers le lieu sur Google Maps.</small></article>
-        <article><span class="tag included">Inclus</span><div class="card-icon">✉</div><h3>Votre invitation</h3><p>Retrouvez ici les informations essentielles de notre journée et confirmez votre présence.</p><a href="#reply">Répondre à l'invitation ↓</a></article>
-        <article><span class="tag optional">Option personnalisable</span><div class="card-icon">▤</div><h3>Programme détaillé</h3><p>Les horaires et les temps forts de votre célébration, présentés en frise chronologique.</p><a href="#programme">Découvrir la frise ↓</a></article>
-      </div>
       <p class="legend"><span><i class="dot green"></i> Inclus dans la formule</span><span><i class="dot rose"></i> Option en supplément</span></p>
     </section>
     <section id="map" class="map-section section"><div class="section-title"><span class="tag optional">Option personnalisable</span><p class="kicker">TOUS LES CHEMINS MÈNENT À NOUS</p><p class="script">Retrouvez-nous facilement</p><h2>La carte de <em>notre journée</em></h2><p class="map-intro">Une carte interactive personnalisée peut réunir tous les lieux utiles à vos invités : cérémonie, réception, hébergement et stationnement.</p></div><div class="map-frame"><iframe title="Carte du secteur d'Aix-en-Provence" src="https://www.google.com/maps?q=Aix-en-Provence&output=embed" loading="lazy"></iframe></div><div class="map-links"><a href="https://www.google.com/maps/search/?api=1&query=Mas+des+Oliviers+Aix-en-Provence" target="_blank" rel="noopener noreferrer">Itinéraire vers le lieu ↗</a><span>Exemple de carte — les adresses seront personnalisées pour chaque événement.</span></div></section>
