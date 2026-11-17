@@ -22,6 +22,13 @@ onMounted(() => {
     section.classList.add('reveal-on-scroll')
     revealObserver?.observe(section)
   })
+  // Déclencher les animations internes uniquement lorsque chaque élément entre à l'écran
+  document.querySelectorAll(
+    '.sage-model .guestbook-section .section-title, .sage-model .guestbook-form, .sage-model .guestbook-message, .sage-model .guestbook-empty, .sage-model .reply-section > *'
+  ).forEach((element) => {
+    element.classList.add('reveal-on-scroll')
+    revealObserver?.observe(element)
+  })
 })
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
@@ -660,6 +667,48 @@ async function sendReply() {
   .sage-model .guestbook-section.is-visible .guestbook-message,
   .sage-model .guestbook-message>span,.sage-model .reply-section .success,
   .sage-model .guestbook-section .success{animation:none!important;opacity:1;transform:none}
+}
+
+
+/* Les animations du livre d’or et du RSVP se lancent au vrai défilement */
+.sage-model .guestbook-section .section-title>*,
+.sage-model .reply-section>*:not(form):not(.success),
+.sage-model .guestbook-form,
+.sage-model .reply-section form,
+.sage-model .guestbook-message,
+.sage-model .guestbook-empty,
+.sage-model .guestbook-form label,
+.sage-model .reply-section form>label,
+.sage-model .reply-section form>fieldset,
+.sage-model .reply-section .guest-picker{animation:none!important}
+.sage-model .guestbook-section .section-title,
+.sage-model .guestbook-form,
+.sage-model .reply-section>*,
+.sage-model .guestbook-message,
+.sage-model .guestbook-empty{transition:opacity .85s ease,transform .85s cubic-bezier(.2,.7,.2,1),box-shadow .35s ease}
+.sage-model .guestbook-section .section-title.reveal-on-scroll,
+.sage-model .guestbook-form.reveal-on-scroll,
+.sage-model .guestbook-message.reveal-on-scroll,
+.sage-model .guestbook-empty.reveal-on-scroll,
+.sage-model .reply-section>*:not(.reveal-on-scroll){opacity:1}
+.sage-model .guestbook-section .section-title.reveal-on-scroll:not(.is-visible),
+.sage-model .guestbook-form.reveal-on-scroll:not(.is-visible),
+.sage-model .guestbook-message.reveal-on-scroll:not(.is-visible),
+.sage-model .guestbook-empty.reveal-on-scroll:not(.is-visible),
+.sage-model .reply-section>*:not(.reveal-on-scroll){opacity:0;transform:translateY(28px)}
+.sage-model .guestbook-message.reveal-on-scroll.is-visible{opacity:1;transform:translateY(0)}
+.sage-model .guestbook-message:nth-child(2){transition-delay:.12s}
+.sage-model .guestbook-message:nth-child(3){transition-delay:.24s}
+.sage-model .guestbook-form label,
+.sage-model .reply-section form>label,
+.sage-model .reply-section form>fieldset,
+.sage-model .reply-section .guest-picker{animation:none!important}
+@media(prefers-reduced-motion:reduce){
+  .sage-model .guestbook-section .section-title,
+  .sage-model .guestbook-form,
+  .sage-model .guestbook-message,
+  .sage-model .guestbook-empty,
+  .sage-model .reply-section>*{opacity:1!important;transform:none!important;transition:none!important}
 }
 
 </style>
