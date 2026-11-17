@@ -104,9 +104,12 @@ async function sendReply() {
         <span :class="{ active: mobileMenuOpen }"></span><span :class="{ active: mobileMenuOpen }"></span>
       </button>
       <nav :class="{ 'menu-open': mobileMenuOpen }">
+        <a href="#top" @click="mobileMenuOpen = false">Accueil</a>
         <a href="#details" @click="mobileMenuOpen = false">La célébration</a>
         <a href="#programme" @click="mobileMenuOpen = false">Programme</a>
-        <a href="#countdown" @click="mobileMenuOpen = false">Décompte</a>
+        <a href="#dress-code" @click="mobileMenuOpen = false">Dress code</a>
+        <a href="#accommodations" @click="mobileMenuOpen = false">Hébergements & transports</a>
+        <a href="#guestbook" @click="mobileMenuOpen = false">Livre d’or</a>
         <a href="#map" @click="mobileMenuOpen = false">Carte</a>
         <a href="#reply" @click="mobileMenuOpen = false">Réponse</a>
       </nav>
