@@ -126,7 +126,7 @@ async function sendReply() {
 <template>
   <main class="sage-model">
     <header class="site-header">
-      <a class="brand" href="#top" @click="mobileMenuOpen = false"><img src="/monogramme-elise-antoine.svg" alt="Élise & Antoine"></a>
+      <a class="brand" href="#top" @click="mobileMenuOpen = false"><img src="/images/Monogramme%20de%20mariage%20%C3%89lise%20%26%20Antoine.png" alt="Élise & Antoine"></a>
       <button class="menu-toggle" type="button" :aria-expanded="mobileMenuOpen" aria-label="Ouvrir le menu" @click="mobileMenuOpen = !mobileMenuOpen">
         <span :class="{ active: mobileMenuOpen }"></span><span :class="{ active: mobileMenuOpen }"></span>
       </button>
@@ -153,7 +153,7 @@ async function sendReply() {
       </div>
       <div class="cover-art">
         <div class="arch-photo"></div>
-        <div class="cover-stamp"><img src="/monogramme-elise-antoine.svg" alt="Monogramme Élise & Antoine"></div>
+        <div class="cover-stamp"><img src="/images/Monogramme%20de%20mariage%20%C3%89lise%20%26%20Antoine.png" alt="Monogramme Élise & Antoine"></div>
         <span class="photo-note">L'AMOUR, TOUT SIMPLEMENT</span>
       </div>
       <div class="cover-bottom"><span>18 — 09 — 2027</span><span>MAS DES OLIVIERS · PROVENCE</span></div>
@@ -278,7 +278,7 @@ async function sendReply() {
       <small class="demo-note">Vos réponses sont enregistrées de manière sécurisée pour les mariés.</small>
     </section>
     <a v-if="showBackToTop" class="back-to-top" href="#top" aria-label="Remonter en haut du site" title="Retour en haut">↑</a>
-    <footer><div class="footer-brand"><img src="/monogramme-elise-antoine.svg" alt="Monogramme Élise & Antoine"></div><p class="script">À très bientôt pour célébrer l'amour</p><small>INVITATION IMAGINÉE AVEC <a href="https://www.cbyc-invitations.fr/" target="_blank" rel="noopener noreferrer">C BY C</a></small></footer>
+    <footer><div class="footer-brand"><img src="/images/Monogramme%20de%20mariage%20%C3%89lise%20%26%20Antoine.png" alt="Monogramme Élise & Antoine"></div><p class="script">À très bientôt pour célébrer l'amour</p><small>INVITATION IMAGINÉE AVEC <a href="https://www.cbyc-invitations.fr/" target="_blank" rel="noopener noreferrer">C BY C</a></small></footer>
   </main>
 </template>
 
