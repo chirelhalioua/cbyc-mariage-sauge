@@ -536,4 +536,130 @@ async function sendReply() {
   .sage-model .guestbook-message p{font-size:16px}
 }
 
+
+/* Effet waouh : apparition cinématique du livre d’or et du RSVP */
+.sage-model .guestbook-section,
+.sage-model .reply-section{position:relative;isolation:isolate;overflow:hidden}
+.sage-model .guestbook-section:before,
+.sage-model .reply-section:before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  width:420px;height:420px;
+  border:1px solid rgba(135,148,125,.13);
+  border-radius:50%;
+  top:50%;left:50%;
+  transform:translate(-50%,-45%) scale(.82);
+  box-shadow:0 0 0 34px rgba(135,148,125,.025),0 0 0 68px rgba(135,148,125,.018);
+  opacity:0;
+  transition:opacity 1.2s ease,transform 1.5s cubic-bezier(.2,.7,.2,1);
+  pointer-events:none;
+}
+.sage-model .guestbook-section.is-visible:before,
+.sage-model .reply-section.is-visible:before{opacity:1;transform:translate(-50%,-45%) scale(1)}
+.sage-model .guestbook-section .section-title>*,
+.sage-model .reply-section>*:not(form):not(.success){
+  animation:memoryRise .85s both;
+}
+.sage-model .guestbook-section .section-title>*:nth-child(1),
+.sage-model .reply-section>.tag{animation-delay:.08s}
+.sage-model .guestbook-section .section-title>*:nth-child(2),
+.sage-model .reply-section>.kicker{animation-delay:.18s}
+.sage-model .guestbook-section .section-title>*:nth-child(3),
+.sage-model .reply-section>.script{animation-delay:.28s}
+.sage-model .guestbook-section .section-title>*:nth-child(4),
+.sage-model .reply-section>h2{animation-delay:.38s}
+.sage-model .guestbook-section .section-title>*:nth-child(5),
+.sage-model .reply-section>.reply-intro{animation-delay:.48s}
+.sage-model .guestbook-form,
+.sage-model .reply-section form{
+  position:relative;
+  padding:30px;
+  background:rgba(251,250,246,.58);
+  border:1px solid rgba(135,148,125,.2);
+  box-shadow:0 18px 48px rgba(52,57,47,.055);
+  backdrop-filter:blur(5px);
+  animation:formFloatIn .95s .35s both;
+}
+.sage-model .guestbook-form label,
+.sage-model .reply-section form>label,
+.sage-model .reply-section form>fieldset,
+.sage-model .reply-section .guest-picker{
+  animation:memoryRise .7s both;
+}
+.sage-model .guestbook-form label:nth-child(1),
+.sage-model .reply-section form>label:nth-child(1){animation-delay:.42s}
+.sage-model .guestbook-form label:nth-child(2),
+.sage-model .reply-section form>label:nth-child(2){animation-delay:.54s}
+.sage-model .reply-section form>fieldset{animation-delay:.66s}
+.sage-model .reply-section .guest-picker{animation-delay:.76s}
+.sage-model .guestbook-form input,
+.sage-model .guestbook-form textarea,
+.sage-model .reply-section form input:not([type=radio]),
+.sage-model .reply-section form textarea{
+  transition:border-color .3s ease,box-shadow .3s ease,background .3s ease,transform .3s ease;
+}
+.sage-model .guestbook-form input:focus,
+.sage-model .guestbook-form textarea:focus,
+.sage-model .reply-section form input:not([type=radio]):focus,
+.sage-model .reply-section form textarea:focus{
+  outline:none;
+  border-color:#87947d;
+  background:#fffefa;
+  box-shadow:0 0 0 4px rgba(135,148,125,.12),0 8px 22px rgba(52,57,47,.06);
+  transform:translateY(-1px);
+}
+.sage-model .guestbook-form button,
+.sage-model .reply-section form>button[type=submit]{
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 8px 20px rgba(70,83,66,.13);
+}
+.sage-model .guestbook-form button:before,
+.sage-model .reply-section form>button[type=submit]:before{
+  content:"";
+  position:absolute;
+  top:-80%;left:-35%;
+  width:22%;height:260%;
+  background:rgba(255,255,255,.22);
+  transform:rotate(25deg) translateX(-220%);
+  transition:transform .75s ease;
+}
+.sage-model .guestbook-form button:hover:before,
+.sage-model .reply-section form>button[type=submit]:hover:before{transform:rotate(25deg) translateX(720%)}
+.sage-model .guestbook-section.is-visible .guestbook-message{
+  animation:memoryCardIn .9s cubic-bezier(.2,.75,.25,1) both;
+}
+.sage-model .guestbook-section.is-visible .guestbook-message:nth-child(2){animation-delay:.14s}
+.sage-model .guestbook-section.is-visible .guestbook-message:nth-child(3){animation-delay:.28s}
+.sage-model .guestbook-message>span{animation:quoteDrift 4s ease-in-out infinite}
+.sage-model .guestbook-message:hover:before{border-color:rgba(135,148,125,.42);transition:border-color .35s ease}
+.sage-model .reply-section .tag,
+.sage-model .guestbook-section .tag{box-shadow:0 4px 14px rgba(70,83,66,.07)}
+.sage-model .reply-section .success,
+.sage-model .guestbook-section .success{
+  max-width:560px;margin:24px auto;padding:36px 28px;
+  background:#fbfaf6;border:1px solid #dfe5d9;
+  box-shadow:0 18px 45px rgba(52,57,47,.07);
+  animation:memoryCardIn .8s cubic-bezier(.2,.75,.25,1) both;
+}
+@keyframes memoryRise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes formFloatIn{from{opacity:0;transform:translateY(30px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes memoryCardIn{from{opacity:0;transform:translateY(32px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes quoteDrift{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@media(max-width:700px){
+  .sage-model .guestbook-form,.sage-model .reply-section form{padding:22px 17px}
+  .sage-model .guestbook-section:before,.sage-model .reply-section:before{width:280px;height:280px}
+}
+@media(prefers-reduced-motion:reduce){
+  .sage-model .guestbook-section:before,.sage-model .reply-section:before{transition:none}
+  .sage-model .guestbook-section .section-title>*,.sage-model .reply-section>*,
+  .sage-model .guestbook-form,.sage-model .reply-section form,
+  .sage-model .guestbook-form label,.sage-model .reply-section form>label,
+  .sage-model .reply-section form>fieldset,.sage-model .reply-section .guest-picker,
+  .sage-model .guestbook-section.is-visible .guestbook-message,
+  .sage-model .guestbook-message>span,.sage-model .reply-section .success,
+  .sage-model .guestbook-section .success{animation:none!important;opacity:1;transform:none}
+}
+
 </style>
