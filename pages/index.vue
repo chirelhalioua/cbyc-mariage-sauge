@@ -80,8 +80,14 @@ const dressPalette = [
   { name: 'Terracotta doux', hex: '#b77e68' }
 ]
 
-const selectedDressGender = ref('all')
+const selectedDressGender = ref<'all' | 'women' | 'men'>('all')
 const selectedDressColor = ref('all')
+function setDressGender(value: 'all' | 'women' | 'men') {
+  selectedDressGender.value = value
+}
+function setDressColor(value: string) {
+  selectedDressColor.value = selectedDressColor.value === value ? 'all' : value
+}
 const dressOutfits = [
   { gender: 'women', colors: ['Vert sauge'], image: 'https://robe-avenue.com/cdn/shop/files/robe-invitee-de-mariage-vert-sauge-robe-invitee-mariage-vert-sauge-robe-avenue-1155677696.webp?v=1744522071&width=800', alt: 'Robe longue vert sauge pour une invitée', title: 'Vert sauge', description: 'Robe fluide ou satinée' },
   { gender: 'women', colors: ['Olive', 'Terracotta doux'], image: 'https://klodsy.com/images/blog/es/clutch-rafia-invitada-boda.webp', alt: 'Tenue d’invitée dans des tons olive et terracotta', title: 'Olive & terracotta', description: 'Robe ou ensemble coloré' },
@@ -188,16 +194,16 @@ async function sendReply() {
       <div class="section-title"><span class="tag optional">Option personnalisable</span><p class="kicker">LE PETIT CONSEIL DES MARIÉS</p><p class="script">Une harmonie tout en douceur</p><h2>Le <em>dress code</em></h2><p class="feature-intro">Pour cette journée en Provence, nous vous proposons une palette naturelle et lumineuse. Faites-vous plaisir en choisissant une tenue dans ces tonalités.</p></div>
       <div class="dress-filters" aria-label="Filtrer les inspirations">
         <div class="gender-filters" aria-label="Choisir les tenues">
-          <button type="button" :class="{ active: selectedDressGender === 'all' }" @click="selectedDressGender = 'all'">Tout</button>
-          <button type="button" :class="{ active: selectedDressGender === 'women' }" @click="selectedDressGender = 'women'">Femme</button>
-          <button type="button" :class="{ active: selectedDressGender === 'men' }" @click="selectedDressGender = 'men'">Homme</button>
+          <button type="button" :class="{ active: selectedDressGender === 'all' }" @click="setDressGender('all')">Tout</button>
+          <button type="button" :class="{ active: selectedDressGender === 'women' }" @click="setDressGender('women')">Femme</button>
+          <button type="button" :class="{ active: selectedDressGender === 'men' }" @click="setDressGender('men')">Homme</button>
         </div>
         <p class="color-filter-label">Choisir une couleur</p>
         <div class="palette-row">
-          <button v-for="color in dressPalette" :key="color.hex" type="button" class="palette-color" :class="{ selected: selectedDressColor === color.name }" :aria-pressed="selectedDressColor === color.name" @click="selectedDressColor = selectedDressColor === color.name ? 'all' : color.name">
+          <button v-for="color in dressPalette" :key="color.hex" type="button" class="palette-color" :class="{ selected: selectedDressColor === color.name }" :aria-pressed="selectedDressColor === color.name" @click="setDressColor(color.name)">
             <span :style="{ backgroundColor: color.hex }"></span><small>{{ color.name }}</small>
           </button>
-          <button type="button" class="color-reset" :class="{ selected: selectedDressColor === 'all' }" @click="selectedDressColor = 'all'">Toutes</button>
+          <button type="button" class="color-reset" :class="{ selected: selectedDressColor === 'all' }" @click="setDressColor('all')">Toutes</button>
         </div>
       </div>
       <div class="inspiration-grid">
