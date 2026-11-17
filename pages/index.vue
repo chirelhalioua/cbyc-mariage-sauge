@@ -205,4 +205,10 @@ function sendReply() {
 @keyframes guestMenuIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
 
 .sage-model .menu-toggle{display:none}.sage-model nav a{position:relative;padding:8px 0}.sage-model nav a:after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:var(--sage);transition:right .25s ease}.sage-model nav a:hover:after{right:0}
+
+@media(max-width:700px){
+  .sage-model .menu-toggle{display:flex!important;flex-shrink:0;position:relative;z-index:22}
+  .sage-model .site-header{justify-content:space-between}
+  .sage-model .site-header nav{z-index:21}
+}
 </style>
