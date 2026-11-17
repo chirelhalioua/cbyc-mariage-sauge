@@ -176,9 +176,10 @@ async function sendReply() {
         <div v-for="color in dressPalette" :key="color.hex" class="palette-color"><span :style="{ backgroundColor: color.hex }"></span><small>{{ color.name }}</small></div>
       </div>
       <div class="inspiration-grid">
-        <figure><img src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=700&q=85" alt="Inspiration de tenue élégante dans des tons doux"><figcaption>Une tenue élégante et confortable</figcaption></figure>
-        <figure><img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=700&q=85" alt="Inspiration de robe de cérémonie"><figcaption>Des matières légères et naturelles</figcaption></figure>
-        <figure><img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=700&q=85" alt="Inspiration de silhouette habillée"><figcaption>Une touche personnelle, tout simplement</figcaption></figure>
+        <figure><img src="https://robe-avenue.com/cdn/shop/files/robe-invitee-de-mariage-vert-sauge-robe-invitee-mariage-vert-sauge-robe-avenue-1155677696.webp?v=1744522071&width=800" alt="Robe longue vert sauge pour une invitée"><figcaption><strong>Pour elles · Vert sauge</strong> — robe fluide ou satinée</figcaption></figure>
+        <figure><img src="https://klodsy.com/images/blog/es/clutch-rafia-invitada-boda.webp" alt="Tenue d'invitée associant vert olive et jupe terracotta"><figcaption><strong>Pour elles · Olive & terracotta</strong> — robe ou ensemble coloré</figcaption></figure>
+        <figure><img src="https://d1fufvy4xao6k9.cloudfront.net/looks/975/EKP00080-Edit%201.jpg" alt="Costume beige avec chemise claire et cravate vert foncé"><figcaption><strong>Pour eux · Beige & sauge</strong> — costume clair et accessoires verts</figcaption></figure>
+        <figure><img src="https://www.commeuncamion.com/content/uploads/2024/01/artling-insert-02-01.jpg" alt="Costume terracotta avec chemise claire et cravate olive"><figcaption><strong>Pour eux · Terracotta & olive</strong> — costume ou veste dans les tons chauds</figcaption></figure>
       </div>
       <p class="feature-note">Exemple de dress code — les couleurs, les inspirations et les consignes seront entièrement adaptées aux souhaits de chaque couple. Merci d'éviter le blanc réservé aux mariés.</p>
     </section>
