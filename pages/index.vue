@@ -166,6 +166,7 @@ async function sendReply() {
 
     <section id="practical" class="practical section">
       <div class="section-title"><p class="kicker">POUR PRÉPARER VOTRE VENUE</p><p class="script">Quelques détails pratiques</p><h2>Tout simplement <em>l'essentiel</em></h2></div>
+      <a class="section-scroll" href="#dress-code" aria-label="Défiler vers le dress code"><span aria-hidden="true">↓</span></a>
     </section>
     <section id="dress-code" class="details-feature section">
       <div class="section-title"><span class="tag optional">Option personnalisable</span><p class="kicker">LE PETIT CONSEIL DES MARIÉS</p><p class="script">Une harmonie tout en douceur</p><h2>Le <em>dress code</em></h2><p class="feature-intro">Pour cette journée en Provence, nous vous proposons une palette naturelle et lumineuse. Faites-vous plaisir en choisissant une tenue dans ces tonalités.</p></div>
@@ -360,4 +361,14 @@ async function sendReply() {
 .sage-model .guestbook-empty{text-align:center;color:var(--muted);font-size:11px;margin:28px auto}
 .sage-model .form-error{color:#a34f55;font-size:11px;text-align:center}
 @media(max-width:700px){.sage-model .guestbook-messages{grid-template-columns:1fr}.sage-model .inspiration-grid{grid-template-columns:1fr 1fr}.sage-model .inspiration-grid figure:last-child{display:none}.sage-model .inspiration-grid img{height:230px}.sage-model .travel-grid{grid-template-columns:1fr}.sage-model .travel-card{min-height:0}.sage-model .palette-color span{width:52px;height:52px}}
+
+
+/* Transition vers les informations pratiques */
+.sage-model .practical{padding-bottom:12px}
+.sage-model .practical .section-title{margin-bottom:0}
+.sage-model .section-scroll{width:44px;height:44px;margin:22px auto 0;border:1px solid #aab5a2;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--sage);font-size:25px;line-height:1;transition:background .25s ease,transform .25s ease;animation:downArrowFloat 1.8s ease-in-out infinite}
+.sage-model .section-scroll:hover{background:#e8ebe1;transform:translateY(3px)}
+.sage-model #dress-code{padding-top:24px}
+@keyframes downArrowFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+@media(prefers-reduced-motion:reduce){.sage-model .section-scroll{animation:none}}
 </style>
