@@ -443,4 +443,96 @@ async function sendReply() {
   .sage-model .map-frame{height:290px;border-width:6px}
   .sage-model .map-links{margin:12px auto 0;gap:12px;flex-direction:column;align-items:center;text-align:center;line-height:1.7}
 }
+
+/* Livre d’or : cartes de souvenirs plus raffinées */
+.sage-model .guestbook-messages{
+  max-width:1040px;
+  margin:48px auto 0;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),320px));
+  justify-content:center;
+  align-items:stretch;
+  gap:22px;
+}
+.sage-model .guestbook-message{
+  position:relative;
+  min-height:220px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:34px 30px 30px;
+  overflow:hidden;
+  background:#fbfaf6;
+  border:1px solid #e2e5dc;
+  box-shadow:0 10px 28px rgba(52,57,47,.045);
+  text-align:center;
+  transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease;
+}
+.sage-model .guestbook-message:before{
+  content:"";
+  position:absolute;
+  top:13px;
+  left:13px;
+  right:13px;
+  bottom:13px;
+  border:1px solid rgba(135,148,125,.18);
+  pointer-events:none;
+}
+.sage-model .guestbook-message:after{
+  content:"";
+  width:34px;
+  height:1px;
+  margin:17px auto 13px;
+  background:#b8c1b0;
+  order:2;
+}
+.sage-model .guestbook-message:hover{
+  transform:translateY(-5px);
+  border-color:#cbd3c5;
+  box-shadow:0 16px 34px rgba(52,57,47,.085);
+}
+.sage-model .guestbook-message>span{
+  display:block;
+  height:30px;
+  font:46px/.9 'Playfair Display',serif;
+  color:#87947d;
+  order:0;
+}
+.sage-model .guestbook-message p{
+  position:relative;
+  z-index:1;
+  max-width:100%;
+  margin:10px 0 0;
+  font:italic 17px/1.85 'Playfair Display',serif;
+  color:#42483f;
+  overflow-wrap:anywhere;
+  white-space:pre-wrap;
+  order:1;
+}
+.sage-model .guestbook-message small{
+  position:relative;
+  z-index:1;
+  display:block;
+  margin-top:0;
+  font:500 9px 'DM Sans',sans-serif;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:#71806b;
+  order:3;
+}
+@media(max-width:700px){
+  .sage-model .guestbook-messages{
+    grid-template-columns:minmax(0,1fr);
+    max-width:420px;
+    gap:16px;
+    margin-top:32px;
+  }
+  .sage-model .guestbook-message{
+    min-height:190px;
+    padding:30px 26px 26px;
+  }
+  .sage-model .guestbook-message p{font-size:16px}
+}
+
 </style>
