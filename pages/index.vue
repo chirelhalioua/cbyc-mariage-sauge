@@ -72,6 +72,13 @@ async function sendGuestbookMessage() {
   }
 }
 const mobileMenuOpen = ref(false)
+const dressPalette = [
+  { name: 'Vert sauge', hex: '#87947d' },
+  { name: 'Crème', hex: '#eee9dc' },
+  { name: 'Beige', hex: '#c9b99f' },
+  { name: 'Olive', hex: '#626b4d' },
+  { name: 'Terracotta doux', hex: '#b77e68' }
+]
 const showBackToTop = ref(false)
 function handleScroll() { showBackToTop.value = window.scrollY > 320 }
 
@@ -161,11 +168,32 @@ async function sendReply() {
       <div class="section-title"><p class="kicker">POUR PRÉPARER VOTRE VENUE</p><p class="script">Quelques détails pratiques</p><h2>Tout simplement <em>l'essentiel</em></h2></div>
       <div class="attention-heading"><p class="kicker">LES PETITES ATTENTIONS</p><p class="script">Parce que chaque détail compte</p><h3>Des attentions <em>en plus</em></h3><p>Des espaces complémentaires pour accompagner vos invités et rendre votre invitation encore plus personnelle.</p></div>
       <div class="attention-grid">
-        <article class="attention-card"><span class="tag optional">Option personnalisable</span><div class="attention-icon">✧</div><p class="attention-number">01 · LE STYLE</p><h3>Dress code</h3><p>Partagez vos envies de couleurs, de tenues ou d'ambiance pour harmoniser cette belle journée.</p><span class="attention-link">Une touche d'élégance</span></article>
-        <article class="attention-card"><span class="tag optional">Option personnalisable</span><div class="attention-icon">⌁</div><p class="attention-number">02 · S'ORGANISER</p><h3>Hébergements & transports</h3><p>Facilitez la venue de vos proches avec vos recommandations d'hôtels, de parkings ou de navettes.</p><span class="attention-link">Tout pour bien arriver</span></article>
+        <article class="attention-card"><span class="tag optional">Option personnalisable</span><div class="attention-icon">✧</div><p class="attention-number">01 · LE STYLE</p><h3>Dress code</h3><p>Partagez vos envies de couleurs, de tenues ou d'ambiance pour harmoniser cette belle journée.</p><a class="attention-link" href="#dress-code">Découvrir le dress code ↗</a></article>
+        <article class="attention-card"><span class="tag optional">Option personnalisable</span><div class="attention-icon">⌁</div><p class="attention-number">02 · S'ORGANISER</p><h3>Hébergements & transports</h3><p>Facilitez la venue de vos proches avec vos recommandations d'hôtels, de parkings ou de navettes.</p><a class="attention-link" href="#accommodations">Préparer votre venue ↗</a></article>
         <article class="attention-card"><span class="tag optional">Option personnalisable</span><div class="attention-icon">♡</div><p class="attention-number">03 · PARTAGER</p><h3>Livre d'or numérique</h3><p>Offrez à vos invités un espace pour déposer un mot doux, un souvenir ou un vœu pour les mariés.</p><span class="attention-link">Des mots à garder</span></article>
       </div>
       <p class="legend"><span><i class="dot green"></i> Inclus dans la formule</span><span><i class="dot rose"></i> Option en supplément</span></p>
+    </section>
+    <section id="dress-code" class="details-feature section">
+      <div class="section-title"><span class="tag optional">Option personnalisable</span><p class="kicker">LE PETIT CONSEIL DES MARIÉS</p><p class="script">Une harmonie tout en douceur</p><h2>Le <em>dress code</em></h2><p class="feature-intro">Pour cette journée en Provence, nous vous proposons une palette naturelle et lumineuse. Faites-vous plaisir en choisissant une tenue dans ces tonalités.</p></div>
+      <div class="palette-row">
+        <div v-for="color in dressPalette" :key="color.hex" class="palette-color"><span :style="{ backgroundColor: color.hex }"></span><small>{{ color.name }}</small></div>
+      </div>
+      <div class="inspiration-grid">
+        <figure><img src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=700&q=85" alt="Inspiration de tenue élégante dans des tons doux"><figcaption>Une tenue élégante et confortable</figcaption></figure>
+        <figure><img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=700&q=85" alt="Inspiration de robe de cérémonie"><figcaption>Des matières légères et naturelles</figcaption></figure>
+        <figure><img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=700&q=85" alt="Inspiration de silhouette habillée"><figcaption>Une touche personnelle, tout simplement</figcaption></figure>
+      </div>
+      <p class="feature-note">Exemple de dress code — les couleurs, les inspirations et les consignes seront entièrement adaptées aux souhaits de chaque couple. Merci d'éviter le blanc réservé aux mariés.</p>
+    </section>
+    <section id="accommodations" class="details-feature accommodations-section section">
+      <div class="section-title"><span class="tag optional">Option personnalisable</span><p class="kicker">TOUT POUR ORGANISER VOTRE VENUE</p><p class="script">Nous avons pensé aux petits détails</p><h2>Hébergements <em>& transports</em></h2><p class="feature-intro">Retrouvez ici les informations utiles pour préparer votre déplacement et profiter pleinement de la journée.</p></div>
+      <div class="travel-grid">
+        <article class="travel-card"><span>01 · DORMIR</span><div class="travel-icon">⌂</div><h3>Hébergements</h3><p>Les adresses d'hôtels et de chambres d'hôtes recommandés par les mariés seront ajoutées ici.</p><small>Adresses et éventuels tarifs à compléter par les mariés.</small><a href="https://www.google.com/maps/search/hotels+Aix-en-Provence" target="_blank" rel="noopener noreferrer">Voir les hôtels à proximité ↗</a></article>
+        <article class="travel-card"><span>02 · SE GARER</span><div class="travel-icon">⌖</div><h3>Parkings</h3><p>Les informations concernant le stationnement et les éventuelles zones de dépose seront précisées ici.</p><small>Parking conseillé et conditions à confirmer.</small><a href="https://www.google.com/maps/search/parking+Aix-en-Provence" target="_blank" rel="noopener noreferrer">Rechercher un parking ↗</a></article>
+        <article class="travel-card"><span>03 · SE DÉPLACER</span><div class="travel-icon">↗</div><h3>Transports & navettes</h3><p>Les horaires de navette, les points de rendez-vous et les options de transport seront indiqués ici.</p><small>Horaires et réservations à compléter.</small><a href="https://www.google.com/maps/dir/?api=1&destination=Aix-en-Provence" target="_blank" rel="noopener noreferrer">Préparer son itinéraire ↗</a></article>
+      </div>
+      <p class="feature-note">Informations d'exemple pour la maquette — aucun hôtel, parking ou service de navette n'est confirmé à ce stade.</p>
     </section>
     <section id="guestbook" class="guestbook-section section">
       <div class="section-title"><p class="kicker">UN SOUVENIR À PARTAGER</p><p class="script">Quelques mots qui resteront</p><h2>Le livre <em>d’or</em></h2><p class="map-intro">Laissez un petit mot aux mariés. Chaque message sera publié après leur validation.</p></div>
@@ -305,6 +333,25 @@ async function sendReply() {
 .sage-model .attention-link{display:inline-block;margin-top:12px;padding-bottom:5px;border-bottom:1px solid #b7c0b0;color:var(--sage-dark);font:italic 12px 'Playfair Display',serif}
 @media(max-width:700px){.sage-model .attention-grid{grid-template-columns:1fr;gap:14px}.sage-model .attention-card{min-height:0;padding:25px 22px}.sage-model .attention-card>p:not(.attention-number){min-height:0}.sage-model .attention-heading{margin:55px auto 30px}}
 
+.sage-model .details-feature{background:#fbfaf6}
+.sage-model .accommodations-section{background:#f0f0e8}
+.sage-model .feature-intro{max-width:600px;margin:0 auto;color:var(--muted);font-size:12px;line-height:1.9}
+.sage-model .palette-row{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin:42px auto}
+.sage-model .palette-color{display:grid;gap:9px;justify-items:center;font-size:9px;color:var(--muted)}
+.sage-model .palette-color span{width:66px;height:66px;border-radius:50%;border:4px solid white;box-shadow:0 2px 12px #34392f18}
+.sage-model .inspiration-grid{max-width:1000px;margin:35px auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.sage-model .inspiration-grid figure{margin:0}
+.sage-model .inspiration-grid img{width:100%;height:310px;object-fit:cover;display:block}
+.sage-model .inspiration-grid figcaption{text-align:center;padding:12px 5px;color:var(--sage-dark);font:italic 13px 'Playfair Display',serif}
+.sage-model .feature-note{text-align:center;max-width:760px;margin:28px auto 0;color:#929388;font-size:9px;line-height:1.8}
+.sage-model .travel-grid{max-width:1050px;margin:0 auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.sage-model .travel-card{padding:28px 24px;background:#fbfaf6;border:1px solid #e5e8df;display:flex;flex-direction:column;align-items:flex-start;min-height:300px}
+.sage-model .travel-card>span{font-size:8px;letter-spacing:.18em;color:var(--sage);font-weight:600}
+.sage-model .travel-icon{font:32px 'Italiana',serif;color:var(--sage);margin:20px 0 8px}
+.sage-model .travel-card h3{font:25px 'Italiana',serif;margin:0 0 10px}
+.sage-model .travel-card p{font-size:11px;line-height:1.8;color:var(--muted);margin:0 0 12px}
+.sage-model .travel-card small{font-size:9px;line-height:1.6;color:#929388;margin-top:auto}
+.sage-model .travel-card a{font-size:10px;color:var(--sage-dark);border-bottom:1px solid #b7c0b0;padding-bottom:4px;margin-top:16px}
 .sage-model .guestbook-section{background:#f0f0e8}
 .sage-model .guestbook-form{max-width:560px;margin:0 auto;display:grid;gap:15px}
 .sage-model .guestbook-form label{display:grid;gap:8px;font-size:10px;letter-spacing:.06em;color:var(--sage-dark)}
@@ -317,5 +364,5 @@ async function sendReply() {
 .sage-model .guestbook-message small{font-size:9px;letter-spacing:.15em;color:var(--sage)}
 .sage-model .guestbook-empty{text-align:center;color:var(--muted);font-size:11px;margin:28px auto}
 .sage-model .form-error{color:#a34f55;font-size:11px;text-align:center}
-@media(max-width:700px){.sage-model .guestbook-messages{grid-template-columns:1fr}}
+@media(max-width:700px){.sage-model .guestbook-messages{grid-template-columns:1fr}.sage-model .inspiration-grid{grid-template-columns:1fr 1fr}.sage-model .inspiration-grid figure:last-child{display:none}.sage-model .inspiration-grid img{height:230px}.sage-model .travel-grid{grid-template-columns:1fr}.sage-model .travel-card{min-height:0}.sage-model .palette-color span{width:52px;height:52px}}
 </style>
