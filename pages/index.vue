@@ -92,7 +92,7 @@ const dressOutfits = [
   { gender: 'women', colors: ['Vert sauge'], image: 'https://robe-avenue.com/cdn/shop/files/robe-invitee-de-mariage-vert-sauge-robe-invitee-mariage-vert-sauge-robe-avenue-1155677696.webp?v=1744522071&width=800', alt: 'Robe longue vert sauge pour une invitée', title: 'Vert sauge', description: 'Robe fluide ou satinée' },
   { gender: 'women', colors: ['Olive', 'Terracotta doux'], image: 'https://klodsy.com/images/blog/es/clutch-rafia-invitada-boda.webp', alt: 'Tenue d’invitée dans des tons olive et terracotta', title: 'Olive & terracotta', description: 'Robe ou ensemble coloré' },
   { gender: 'men', colors: ['Vert sauge'], image: 'https://sweettailor.fr/cdn/shop/files/costume-vert-sauge-col-mao.png?v=1762401209&width=1445', alt: 'Costume trois pièces vert sauge pour homme', title: 'Vert sauge', description: 'Costume vert sauge et accessoires clairs' },
-  { gender: 'men', colors: ['Terracotta doux', 'Olive'], image: 'https://www.commeuncamion.com/content/uploads/2024/01/artling-insert-02-01.jpg', alt: 'Costume terracotta avec chemise claire et cravate olive', title: 'Terracotta & olive', description: 'Costume ou veste dans les tons chauds' }
+  { gender: 'men', colors: ['Olive'], image: 'https://content.moss.co.uk/images/extraextralarge/967015112_01.jpg', alt: 'Costume trois pièces vert olive foncé pour homme', title: 'Vert olive foncé', description: 'Costume trois pièces vert foncé' }
 ]
 const filteredDressOutfits = computed(() => dressOutfits.filter((outfit) => {
   const genderMatches = selectedDressGender.value === 'all' || outfit.gender === selectedDressGender.value
