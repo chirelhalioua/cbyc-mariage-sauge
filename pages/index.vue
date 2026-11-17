@@ -160,6 +160,9 @@ function sendReply() {
 .sage-model .is-visible .timeline-item{opacity:1;transform:translateX(0)}
 .sage-model .is-visible .timeline-item:nth-child(2){transition-delay:.18s}
 .sage-model .is-visible .timeline-item:nth-child(3){transition-delay:.36s}
+/* Sécurité : les étapes restent visibles même si l'observateur d'animation ne se déclenche pas */
+.sage-model .timeline-item{opacity:1;transform:none;transition:transform .3s ease}
+.sage-model .timeline-item:hover{transform:translateX(5px)}
 .sage-model .countdown-grid strong{display:inline-block;animation:numberFloat 2.8s ease-in-out infinite}
 .sage-model .countdown-grid div:nth-child(2) strong{animation-delay:.2s}
 .sage-model .countdown-grid div:nth-child(3) strong{animation-delay:.4s}
