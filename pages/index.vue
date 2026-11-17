@@ -18,7 +18,7 @@ onMounted(() => {
       }
     })
   }, { threshold: 0.14 })
-  document.querySelectorAll('.sage-model main > section:not(.cover)').forEach((section) => {
+  document.querySelectorAll('.sage-model > section:not(.cover)').forEach((section) => {
     section.classList.add('reveal-on-scroll')
     revealObserver?.observe(section)
   })
