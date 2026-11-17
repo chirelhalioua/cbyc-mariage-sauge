@@ -6,6 +6,8 @@ const now = ref(new Date())
 let countdownTimer: ReturnType<typeof setInterval> | undefined
 let revealObserver: IntersectionObserver | undefined
 onMounted(() => {
+  window.addEventListener('scroll', handleScroll, { passive: true })
+  handleScroll()
   countdownTimer = setInterval(() => { now.value = new Date() }, 1000)
   revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -21,6 +23,7 @@ onMounted(() => {
   })
 })
 onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
   if (countdownTimer) clearInterval(countdownTimer)
   revealObserver?.disconnect()
 })
@@ -34,6 +37,8 @@ function chooseGuests(value: string) { guests.value = value; guestsOpen.value = 
 const note = ref('')
 const sent = ref(false)
 const mobileMenuOpen = ref(false)
+const showBackToTop = ref(false)
+function handleScroll() { showBackToTop.value = window.scrollY > 320 }
 
 function sendReply() {
   if (!guestName.value.trim() || !email.value.trim()) return
@@ -140,7 +145,7 @@ function sendReply() {
       <div v-else class="success"><h3>Merci {{ guestName }} !</h3><p>Votre réponse a bien été prise en compte dans cette démonstration.</p></div>
       <small class="demo-note">Modèle de démonstration : le formulaire n'enregistre et n'envoie pas encore les réponses.</small>
     </section>
-    <a class="back-to-top" href="#top" aria-label="Remonter en haut du site" title="Retour en haut">↑</a>
+    <a v-if="showBackToTop" class="back-to-top" href="#top" aria-label="Remonter en haut du site" title="Retour en haut">↑</a>
     <footer><div class="footer-brand">É <span>&</span> A</div><p class="script">À très bientôt pour célébrer l'amour</p><small>INVITATION IMAGINÉE AVEC <a href="https://www.cbyc-invitations.fr/" target="_blank" rel="noopener noreferrer">C BY C</a></small></footer>
   </main>
 </template>
