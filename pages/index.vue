@@ -209,7 +209,6 @@ async function sendReply() {
         <button type="submit">Envoyer ma réponse <span>♡</span></button>
       </form>
       <p v-if="replyError" class="form-error">{{ replyError }}</p>
-      </form>
       <div v-if="sent" class="success"><h3>Merci {{ guestName }} !</h3><p>Votre réponse a bien été enregistrée.</p></div>
       <small class="demo-note">Vos réponses sont enregistrées de manière sécurisée pour les mariés.</small>
     </section>
