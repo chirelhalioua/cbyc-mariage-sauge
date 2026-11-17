@@ -168,9 +168,9 @@ async function sendReply() {
       <div class="section-title"><p class="kicker">POUR PRÉPARER VOTRE VENUE</p><p class="script">Quelques détails pratiques</p><h2>Tout simplement <em>l'essentiel</em></h2></div>
       <div class="attention-heading"><p class="kicker">LES PETITES ATTENTIONS</p><p class="script">Parce que chaque détail compte</p><h3>Des attentions <em>en plus</em></h3><p>Des espaces complémentaires pour accompagner vos invités et rendre votre invitation encore plus personnelle.</p></div>
       <div class="attention-grid">
-        <article class="attention-card"><span class="tag optional">Option personnalisable</span><div class="attention-icon">✧</div><p class="attention-number">01 · LE STYLE</p><h3>Dress code</h3><p>Partagez vos envies de couleurs, de tenues ou d'ambiance pour harmoniser cette belle journée.</p><a class="attention-link" href="#dress-code">Découvrir le dress code ↗</a></article>
-        <article class="attention-card"><span class="tag optional">Option personnalisable</span><div class="attention-icon">⌁</div><p class="attention-number">02 · S'ORGANISER</p><h3>Hébergements & transports</h3><p>Facilitez la venue de vos proches avec vos recommandations d'hôtels, de parkings ou de navettes.</p><a class="attention-link" href="#accommodations">Préparer votre venue ↗</a></article>
-        <article class="attention-card"><span class="tag optional">Option personnalisable</span><div class="attention-icon">♡</div><p class="attention-number">03 · PARTAGER</p><h3>Livre d'or numérique</h3><p>Offrez à vos invités un espace pour déposer un mot doux, un souvenir ou un vœu pour les mariés.</p><span class="attention-link">Des mots à garder</span></article>
+        <a class="attention-card attention-card-link" href="#dress-code"><span class="tag optional">Option personnalisable</span><div class="attention-icon">✧</div><p class="attention-number">01 · LE STYLE</p><h3>Dress code</h3><span class="attention-link">Voir les inspirations ↗</span></a>
+        <a class="attention-card attention-card-link" href="#accommodations"><span class="tag optional">Option personnalisable</span><div class="attention-icon">⌁</div><p class="attention-number">02 · S'ORGANISER</p><h3>Hébergements & transports</h3><span class="attention-link">Préparer votre venue ↗</span></a>
+        <a class="attention-card attention-card-link" href="#guestbook"><span class="tag optional">Option personnalisable</span><div class="attention-icon">♡</div><p class="attention-number">03 · PARTAGER</p><h3>Livre d'or numérique</h3><span class="attention-link">Laisser un petit mot ↗</span></a>
       </div>
       <p class="legend"><span><i class="dot green"></i> Inclus dans la formule</span><span><i class="dot rose"></i> Option en supplément</span></p>
     </section>
@@ -326,6 +326,8 @@ async function sendReply() {
 .sage-model .attention-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;max-width:1100px;margin:0 auto}
 .sage-model .attention-card{padding:28px 24px 30px;background:#f1f2eb;border:1px solid #e8ebe2;min-height:300px;transition:transform .3s ease,box-shadow .3s ease}
 .sage-model .attention-card:hover{transform:translateY(-6px);box-shadow:0 14px 30px #34392f12}
+.sage-model .attention-card-link{display:flex;flex-direction:column;align-items:flex-start;text-decoration:none;color:inherit}
+.sage-model .attention-card-link .attention-link{margin-top:auto}
 .sage-model .attention-icon{font:34px 'Italiana',serif;color:var(--sage);margin:25px 0 16px}
 .sage-model .attention-number{font-size:8px!important;letter-spacing:.18em;color:var(--sage)!important;font-weight:600}
 .sage-model .attention-card h3{font:26px 'Italiana',serif;margin:8px 0 12px}
