@@ -204,4 +204,5 @@ function sendReply() {
 .sage-model .guest-options button.selected .guest-check{background:var(--sage);border-color:var(--sage)}
 @keyframes guestMenuIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
 
-.sage-model .menu-toggle{display:none}.sage-model nav a{position:relative;padding:8px 0}.sage-model nav a:after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:var(--sage);transition:right .25s ease}.sage-model nav a:hover:after{right:0}\n</style>
+.sage-model .menu-toggle{display:none}.sage-model nav a{position:relative;padding:8px 0}.sage-model nav a:after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:var(--sage);transition:right .25s ease}.sage-model nav a:hover:after{right:0}
+</style>
