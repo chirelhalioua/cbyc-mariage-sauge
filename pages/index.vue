@@ -79,6 +79,20 @@ const dressPalette = [
   { name: 'Olive', hex: '#626b4d' },
   { name: 'Terracotta doux', hex: '#b77e68' }
 ]
+
+const selectedDressGender = ref('all')
+const selectedDressColor = ref('all')
+const dressOutfits = [
+  { gender: 'women', colors: ['Vert sauge'], image: 'https://robe-avenue.com/cdn/shop/files/robe-invitee-de-mariage-vert-sauge-robe-invitee-mariage-vert-sauge-robe-avenue-1155677696.webp?v=1744522071&width=800', alt: 'Robe longue vert sauge pour une invitée', title: 'Vert sauge', description: 'Robe fluide ou satinée' },
+  { gender: 'women', colors: ['Olive', 'Terracotta doux'], image: 'https://klodsy.com/images/blog/es/clutch-rafia-invitada-boda.webp', alt: 'Tenue d’invitée dans des tons olive et terracotta', title: 'Olive & terracotta', description: 'Robe ou ensemble coloré' },
+  { gender: 'men', colors: ['Beige', 'Vert sauge'], image: 'https://d1fufvy4xao6k9.cloudfront.net/looks/975/EKP00080-Edit%201.jpg', alt: 'Costume beige avec chemise claire et cravate vert foncé', title: 'Beige & sauge', description: 'Costume clair et accessoires verts' },
+  { gender: 'men', colors: ['Terracotta doux', 'Olive'], image: 'https://www.commeuncamion.com/content/uploads/2024/01/artling-insert-02-01.jpg', alt: 'Costume terracotta avec chemise claire et cravate olive', title: 'Terracotta & olive', description: 'Costume ou veste dans les tons chauds' }
+]
+const filteredDressOutfits = computed(() => dressOutfits.filter((outfit) => {
+  const genderMatches = selectedDressGender.value === 'all' || outfit.gender === selectedDressGender.value
+  const colorMatches = selectedDressColor.value === 'all' || outfit.colors.includes(selectedDressColor.value)
+  return genderMatches && colorMatches
+}))
 const showBackToTop = ref(false)
 function handleScroll() { showBackToTop.value = window.scrollY > 320 }
 
@@ -172,14 +186,26 @@ async function sendReply() {
     </section>
     <section id="dress-code" class="details-feature section">
       <div class="section-title"><span class="tag optional">Option personnalisable</span><p class="kicker">LE PETIT CONSEIL DES MARIÉS</p><p class="script">Une harmonie tout en douceur</p><h2>Le <em>dress code</em></h2><p class="feature-intro">Pour cette journée en Provence, nous vous proposons une palette naturelle et lumineuse. Faites-vous plaisir en choisissant une tenue dans ces tonalités.</p></div>
-      <div class="palette-row">
-        <div v-for="color in dressPalette" :key="color.hex" class="palette-color"><span :style="{ backgroundColor: color.hex }"></span><small>{{ color.name }}</small></div>
+      <div class="dress-filters" aria-label="Filtrer les inspirations">
+        <div class="gender-filters" aria-label="Choisir les tenues">
+          <button type="button" :class="{ active: selectedDressGender === 'all' }" @click="selectedDressGender = 'all'">Tout</button>
+          <button type="button" :class="{ active: selectedDressGender === 'women' }" @click="selectedDressGender = 'women'">Femme</button>
+          <button type="button" :class="{ active: selectedDressGender === 'men' }" @click="selectedDressGender = 'men'">Homme</button>
+        </div>
+        <p class="color-filter-label">Choisir une couleur</p>
+        <div class="palette-row">
+          <button v-for="color in dressPalette" :key="color.hex" type="button" class="palette-color" :class="{ selected: selectedDressColor === color.name }" :aria-pressed="selectedDressColor === color.name" @click="selectedDressColor = selectedDressColor === color.name ? 'all' : color.name">
+            <span :style="{ backgroundColor: color.hex }"></span><small>{{ color.name }}</small>
+          </button>
+          <button type="button" class="color-reset" :class="{ selected: selectedDressColor === 'all' }" @click="selectedDressColor = 'all'">Toutes</button>
+        </div>
       </div>
       <div class="inspiration-grid">
-        <figure><img src="https://robe-avenue.com/cdn/shop/files/robe-invitee-de-mariage-vert-sauge-robe-invitee-mariage-vert-sauge-robe-avenue-1155677696.webp?v=1744522071&width=800" alt="Robe longue vert sauge pour une invitée"><figcaption><strong>Pour elles · Vert sauge</strong> — robe fluide ou satinée</figcaption></figure>
-        <figure><img src="https://klodsy.com/images/blog/es/clutch-rafia-invitada-boda.webp" alt="Tenue d'invitée associant vert olive et jupe terracotta"><figcaption><strong>Pour elles · Olive & terracotta</strong> — robe ou ensemble coloré</figcaption></figure>
-        <figure><img src="https://d1fufvy4xao6k9.cloudfront.net/looks/975/EKP00080-Edit%201.jpg" alt="Costume beige avec chemise claire et cravate vert foncé"><figcaption><strong>Pour eux · Beige & sauge</strong> — costume clair et accessoires verts</figcaption></figure>
-        <figure><img src="https://www.commeuncamion.com/content/uploads/2024/01/artling-insert-02-01.jpg" alt="Costume terracotta avec chemise claire et cravate olive"><figcaption><strong>Pour eux · Terracotta & olive</strong> — costume ou veste dans les tons chauds</figcaption></figure>
+        <figure v-for="outfit in filteredDressOutfits" :key="outfit.title" class="outfit-card">
+          <img :src="outfit.image" :alt="outfit.alt" loading="lazy">
+          <figcaption><strong>{{ outfit.gender === 'women' ? 'Pour elles' : 'Pour eux' }} · {{ outfit.title }}</strong><br>{{ outfit.description }}</figcaption>
+        </figure>
+        <p v-if="filteredDressOutfits.length === 0" class="no-outfits">Aucune inspiration pour cette combinaison. Choisissez une autre couleur ou catégorie.</p>
       </div>
       <p class="feature-note">Exemple de dress code — les couleurs, les inspirations et les consignes seront entièrement adaptées aux souhaits de chaque couple. Merci d'éviter le blanc réservé aux mariés.</p>
     </section>
@@ -340,6 +366,20 @@ async function sendReply() {
 .sage-model .palette-color span{width:66px;height:66px;border-radius:50%;border:4px solid white;box-shadow:0 2px 12px #34392f18}
 .sage-model .inspiration-grid{max-width:1000px;margin:35px auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
 .sage-model .inspiration-grid figure{margin:0}
+.sage-model .dress-filters{max-width:760px;margin:34px auto 20px;text-align:center}
+.sage-model .gender-filters{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.sage-model .gender-filters button,.sage-model .color-reset{border:1px solid #cbd2c4;background:transparent;color:var(--sage-dark);border-radius:24px;padding:10px 20px;font:10px 'DM Sans',sans-serif;letter-spacing:.08em;cursor:pointer;transition:all .2s ease}
+.sage-model .gender-filters button.active,.sage-model .color-reset.selected{background:var(--sage);border-color:var(--sage);color:white}
+.sage-model .color-filter-label{margin:22px 0 0;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.sage-model .dress-filters .palette-row{margin:16px auto 0;gap:15px}
+.sage-model .dress-filters .palette-color{border:0;background:transparent;padding:5px 7px;border-radius:10px;cursor:pointer}
+.sage-model .dress-filters .palette-color.selected{background:#e8ebe1;outline:1px solid #aab5a2}
+.sage-model .dress-filters .palette-color span{width:42px;height:42px}
+.sage-model .color-reset{align-self:center;padding:9px 14px}
+.sage-model .outfit-card{animation:outfitFadeIn .3s ease both}
+.sage-model .no-outfits{grid-column:1/-1;text-align:center;color:var(--muted);font-size:12px;padding:28px}
+@keyframes outfitFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
 .sage-model .inspiration-grid img{width:100%;height:310px;object-fit:cover;display:block}
 .sage-model .inspiration-grid figcaption{text-align:center;padding:12px 5px;color:var(--sage-dark);font:italic 13px 'Playfair Display',serif}
 .sage-model .feature-note{text-align:center;max-width:760px;margin:28px auto 0;color:#929388;font-size:9px;line-height:1.8}
