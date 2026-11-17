@@ -371,4 +371,27 @@ async function sendReply() {
 .sage-model #dress-code{padding-top:24px}
 @keyframes downArrowFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
 @media(prefers-reduced-motion:reduce){.sage-model .section-scroll{animation:none}}
+
+
+/* Sections livre d'or et carte : rythme plus compact sur mobile */
+.sage-model .guestbook-section{background:#e8ebe1}
+.sage-model .map-section{background:#fbfaf6}
+.sage-model .guestbook-section .section-title,
+.sage-model .map-section .section-title{margin-bottom:30px}
+.sage-model .guestbook-form{gap:12px}
+.sage-model .guestbook-empty{margin:18px auto 0}
+.sage-model .map-frame{overflow:hidden}
+@media(max-width:700px){
+  .sage-model .accommodations-section{padding-bottom:34px}
+  .sage-model .guestbook-section{padding:48px 7%}
+  .sage-model .guestbook-section .section-title{margin-bottom:28px}
+  .sage-model .guestbook-form{gap:12px}
+  .sage-model .guestbook-form textarea{min-height:120px}
+  .sage-model .guestbook-empty{margin:16px auto 0}
+  .sage-model .guestbook-messages{margin-top:24px}
+  .sage-model .map-section{padding:50px 7%}
+  .sage-model .map-section .section-title{margin-bottom:26px}
+  .sage-model .map-frame{height:290px;border-width:6px}
+  .sage-model .map-links{margin:12px auto 0;gap:12px;flex-direction:column;align-items:center;text-align:center;line-height:1.7}
+}
 </style>
