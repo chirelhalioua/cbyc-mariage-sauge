@@ -409,7 +409,7 @@ async function sendReply() {
 .sage-model .guestbook-message small{font-size:9px;letter-spacing:.15em;color:var(--sage)}
 .sage-model .guestbook-empty{text-align:center;color:var(--muted);font-size:11px;margin:28px auto}
 .sage-model .form-error{color:#a34f55;font-size:11px;text-align:center}
-@media(max-width:700px){.sage-model .guestbook-messages{grid-template-columns:1fr}.sage-model .inspiration-grid{grid-template-columns:1fr 1fr}.sage-model .inspiration-grid figure:last-child{display:none}.sage-model .inspiration-grid img{height:230px}.sage-model .travel-grid{grid-template-columns:1fr}.sage-model .travel-card{min-height:0}.sage-model .palette-color span{width:52px;height:52px}}
+@media(max-width:700px){.sage-model .guestbook-messages{grid-template-columns:1fr}.sage-model .inspiration-grid{grid-template-columns:1fr 1fr}.sage-model .inspiration-grid img{height:230px}.sage-model .travel-grid{grid-template-columns:1fr}.sage-model .travel-card{min-height:0}.sage-model .palette-color span{width:52px;height:52px}}
 
 
 /* Transition vers les informations pratiques */
