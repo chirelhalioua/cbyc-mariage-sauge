@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-labelledby="title desc">
+<title id="title">Élise &amp; Antoine — Notre mariage</title>
+<desc id="desc">Monogramme E et A vert sauge et doré, entouré d'une couronne fine et de branches d'olivier fleuries.</desc>
+<defs>
+ <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b58a3b"/><stop offset=".48" stop-color="#e1c27c"/><stop offset="1" stop-color="#9b702d"/></linearGradient>
+ <g id="leaf" fill="#89977e" stroke="#718268" stroke-width="1"><ellipse rx="11" ry="29" transform="rotate(-42)"/><path d="M0 0L0 -27" fill="none"/></g>
+ <g id="flower" fill="#fffdf5" stroke="#e6dcc5" stroke-width="1"><ellipse cy="-17" rx="10" ry="18"/><ellipse cy="-17" rx="10" ry="18" transform="rotate(72)"/><ellipse cy="-17" rx="10" ry="18" transform="rotate(144)"/><ellipse cy="-17" rx="10" ry="18" transform="rotate(216)"/><ellipse cy="-17" rx="10" ry="18" transform="rotate(288)"/><circle r="5" fill="#c7a45d" stroke="none"/></g>
+</defs>
+<rect width="800" height="800" fill="#f8f6ef"/>
+<path d="M400 76 A324 324 0 1 1 399.8 76" fill="none" stroke="url(#gold)" stroke-width="2.2"/>
+<path d="M110 260 Q78 190 145 117 Q208 62 290 85" fill="none" stroke="#7c8d70" stroke-width="2"/>
+<g transform="translate(142 155) rotate(-30)"><use href="#leaf" x="-25" y="8"/><use href="#leaf" x="17" y="-17" transform="rotate(72 17 -17)"/><use href="#leaf" x="46" y="-39" transform="rotate(55 46 -39)"/><use href="#leaf" x="72" y="-58" transform="rotate(70 72 -58)"/><use href="#flower" x="12" y="40"/><use href="#flower" x="92" y="-68" transform="scale(.72)"/></g>
+<path d="M690 540 Q740 620 666 690 Q600 746 516 710" fill="none" stroke="#7c8d70" stroke-width="2"/>
+<g transform="translate(670 628) rotate(145)"><use href="#leaf" x="-25" y="8"/><use href="#leaf" x="17" y="-17" transform="rotate(72 17 -17)"/><use href="#leaf" x="46" y="-39" transform="rotate(55 46 -39)"/><use href="#leaf" x="72" y="-58" transform="rotate(70 72 -58)"/><use href="#flower" x="12" y="40"/><use href="#flower" x="92" y="-68" transform="scale(.72)"/></g>
+<text x="310" y="405" text-anchor="middle" font-family="Georgia,serif" font-size="220" font-style="italic" fill="#526347">E</text>
+<text x="480" y="407" text-anchor="middle" font-family="Georgia,serif" font-size="176" font-style="italic" fill="url(#gold)">&amp;</text>
+<text x="575" y="405" text-anchor="middle" font-family="Georgia,serif" font-size="220" font-style="italic" fill="#526347">A</text>
+<text x="400" y="510" text-anchor="middle" font-family="Georgia,serif" font-size="39" letter-spacing="10" fill="#514b3d">ÉLISE &amp; ANTOINE</text>
+<path d="M250 562H360 M440 562H550" stroke="url(#gold)" stroke-width="1.6"/><path d="M400 550 C375 526 359 561 400 586 C441 561 425 526 400 550Z" fill="none" stroke="url(#gold)" stroke-width="2"/>
+<text x="400" y="632" text-anchor="middle" font-family="Georgia,serif" font-size="23" letter-spacing="9" fill="#514b3d">NOTRE MARIAGE</text>
+</svg>
