@@ -211,7 +211,7 @@ async function sendReply() {
           <img :src="outfit.image" :alt="outfit.alt" loading="lazy">
           <figcaption><strong>{{ outfit.gender === 'women' ? 'Pour elles' : 'Pour eux' }} · {{ outfit.title }}</strong><br>{{ outfit.description }}</figcaption>
         </figure>
-        <p v-if="filteredDressOutfits.length === 0" class="no-outfits">Aucune inspiration pour cette combinaison. Choisissez une autre couleur ou catégorie.</p>
+        <p v-if="filteredDressOutfits.length === 0" class="no-outfits">Pas d’inspiration pour cette couleur pour le moment.</p>
       </div>
       <p class="feature-note">Exemple de dress code — les couleurs, les inspirations et les consignes seront entièrement adaptées aux souhaits de chaque couple. Merci d'éviter le blanc réservé aux mariés.</p>
     </section>
