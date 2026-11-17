@@ -225,7 +225,7 @@ async function sendReply() {
       <p class="feature-note">Informations d'exemple pour la maquette — aucun hôtel, parking ou service de navette n'est confirmé à ce stade.</p>
     </section>
     <section id="guestbook" class="guestbook-section section">
-      <div class="section-title"><p class="kicker">UN SOUVENIR À PARTAGER</p><p class="script">Quelques mots qui resteront</p><h2>Le livre <em>d’or</em></h2><p class="map-intro">Laissez un petit mot aux mariés. Chaque message sera publié après leur validation.</p></div>
+      <div class="section-title"><span class="tag optional">Option personnalisable</span><p class="kicker">UN SOUVENIR À PARTAGER</p><p class="script">Quelques mots qui resteront</p><h2>Le livre <em>d’or</em></h2><p class="map-intro">Laissez un petit mot aux mariés. Chaque message sera publié après leur validation.</p></div>
       <form v-if="!guestbookSent" class="guestbook-form" @submit.prevent="sendGuestbookMessage">
         <label>Votre prénom et nom<input v-model="guestbookName" required minlength="2" maxlength="80" placeholder="Votre nom"></label>
         <label>Votre petit mot<textarea v-model="guestbookMessage" required minlength="3" maxlength="1000" rows="4" placeholder="Un vœu, un souvenir, une pensée…"></textarea></label>
