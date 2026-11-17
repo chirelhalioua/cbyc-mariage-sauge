@@ -7,6 +7,7 @@ let countdownTimer: ReturnType<typeof setInterval> | undefined
 let revealObserver: IntersectionObserver | undefined
 onMounted(() => {
   window.addEventListener('scroll', handleScroll, { passive: true })
+  loadGuestbook()
   handleScroll()
   countdownTimer = setInterval(() => { now.value = new Date() }, 1000)
   revealObserver = new IntersectionObserver((entries) => {
@@ -36,13 +37,55 @@ const guestsOpen = ref(false)
 function chooseGuests(value: string) { guests.value = value; guestsOpen.value = false }
 const note = ref('')
 const sent = ref(false)
+const replyError = ref('')
+const guestbookName = ref('')
+const guestbookMessage = ref('')
+const guestbookSent = ref(false)
+const guestbookError = ref('')
+const guestbookMessages = ref<Array<{ name: string; message: string; createdAt: string }>>([])
+const guestbookLoading = ref(false)
+
+async function loadGuestbook() {
+  guestbookLoading.value = true
+  try {
+    const result = await $fetch<{ messages: Array<{ name: string; message: string; createdAt: string }> }>('/api/guestbook')
+    guestbookMessages.value = result.messages
+  } catch {
+    guestbookError.value = 'Le livre d’or sera bientôt disponible.'
+  } finally {
+    guestbookLoading.value = false
+  }
+}
+
+async function sendGuestbookMessage() {
+  guestbookError.value = ''
+  try {
+    await $fetch('/api/guestbook', {
+      method: 'POST',
+      body: { name: guestbookName.value, message: guestbookMessage.value }
+    })
+    guestbookSent.value = true
+    guestbookName.value = ''
+    guestbookMessage.value = ''
+  } catch (error: any) {
+    guestbookError.value = error?.data?.statusMessage || 'Impossible d’envoyer votre message pour le moment.'
+  }
+}
 const mobileMenuOpen = ref(false)
 const showBackToTop = ref(false)
 function handleScroll() { showBackToTop.value = window.scrollY > 320 }
 
-function sendReply() {
-  if (!guestName.value.trim() || !email.value.trim()) return
-  sent.value = true
+async function sendReply() {
+  replyError.value = ''
+  try {
+    await $fetch('/api/rsvp', {
+      method: 'POST',
+      body: { name: guestName.value, email: email.value, attendance: attendance.value, guests: guests.value, note: note.value }
+    })
+    sent.value = true
+  } catch (error: any) {
+    replyError.value = error?.data?.statusMessage || 'Votre réponse n’a pas pu être enregistrée. Réessayez.'
+  }
 }
 </script>
 
@@ -124,6 +167,23 @@ function sendReply() {
       </div>
       <p class="legend"><span><i class="dot green"></i> Inclus dans la formule</span><span><i class="dot rose"></i> Option en supplément</span></p>
     </section>
+    <section id="guestbook" class="guestbook-section section">
+      <div class="section-title"><p class="kicker">UN SOUVENIR À PARTAGER</p><p class="script">Quelques mots qui resteront</p><h2>Le livre <em>d’or</em></h2><p class="map-intro">Laissez un petit mot aux mariés. Chaque message sera publié après leur validation.</p></div>
+      <form v-if="!guestbookSent" class="guestbook-form" @submit.prevent="sendGuestbookMessage">
+        <label>Votre prénom et nom<input v-model="guestbookName" required minlength="2" maxlength="80" placeholder="Votre nom"></label>
+        <label>Votre petit mot<textarea v-model="guestbookMessage" required minlength="3" maxlength="1000" rows="4" placeholder="Un vœu, un souvenir, une pensée…"></textarea></label>
+        <button type="submit">Déposer mon message <span>♡</span></button>
+        <p v-if="guestbookError" class="form-error">{{ guestbookError }}</p>
+      </form>
+      <div v-else class="success"><h3>Merci pour votre mot !</h3><p>Il sera visible ici dès que les mariés l’auront validé.</p></div>
+      <p v-if="guestbookLoading" class="guestbook-empty">Chargement des messages…</p>
+      <div v-else-if="guestbookMessages.length" class="guestbook-messages">
+        <article v-for="(message, index) in guestbookMessages" :key="index" class="guestbook-message">
+          <span>“</span><p>{{ message.message }}</p><small>{{ message.name }}</small>
+        </article>
+      </div>
+      <p v-else class="guestbook-empty">Les premiers petits mots apparaîtront ici après validation.</p>
+    </section>
     <section id="map" class="map-section section"><div class="section-title"><span class="tag optional">Option personnalisable</span><p class="kicker">TOUS LES CHEMINS MÈNENT À NOUS</p><p class="script">Retrouvez-nous facilement</p><h2>La carte de <em>notre journée</em></h2><p class="map-intro">Une carte interactive personnalisée peut réunir tous les lieux utiles à vos invités : cérémonie, réception, hébergement et stationnement.</p></div><div class="map-frame"><iframe title="Carte du secteur d'Aix-en-Provence" src="https://www.google.com/maps?q=Aix-en-Provence&output=embed" loading="lazy"></iframe></div><div class="map-links"><a href="https://www.google.com/maps/search/?api=1&query=Mas+des+Oliviers+Aix-en-Provence" target="_blank" rel="noopener noreferrer">Itinéraire vers le lieu ↗</a><span>Exemple de carte — les adresses seront personnalisées pour chaque événement.</span></div></section>
     <section id="reply" class="reply-section">
       <p class="kicker">NOUS AVONS HÂTE DE VOUS RETROUVER</p>
@@ -148,8 +208,10 @@ function sendReply() {
         <label>Un petit mot (facultatif)<textarea v-model="note" rows="3" placeholder="Une pensée pour les futurs mariés…"></textarea></label>
         <button type="submit">Envoyer ma réponse <span>♡</span></button>
       </form>
-      <div v-else class="success"><h3>Merci {{ guestName }} !</h3><p>Votre réponse a bien été prise en compte dans cette démonstration.</p></div>
-      <small class="demo-note">Modèle de démonstration : le formulaire n'enregistre et n'envoie pas encore les réponses.</small>
+      <p v-if="replyError" class="form-error">{{ replyError }}</p>
+      </form>
+      <div v-if="sent" class="success"><h3>Merci {{ guestName }} !</h3><p>Votre réponse a bien été enregistrée.</p></div>
+      <small class="demo-note">Vos réponses sont enregistrées de manière sécurisée pour les mariés.</small>
     </section>
     <a v-if="showBackToTop" class="back-to-top" href="#top" aria-label="Remonter en haut du site" title="Retour en haut">↑</a>
     <footer><div class="footer-brand">É <span>&</span> A</div><p class="script">À très bientôt pour célébrer l'amour</p><small>INVITATION IMAGINÉE AVEC <a href="https://www.cbyc-invitations.fr/" target="_blank" rel="noopener noreferrer">C BY C</a></small></footer>
@@ -243,4 +305,18 @@ function sendReply() {
 .sage-model .attention-card>p:not(.attention-number){font-size:11px;line-height:1.9;color:var(--muted);min-height:82px}
 .sage-model .attention-link{display:inline-block;margin-top:12px;padding-bottom:5px;border-bottom:1px solid #b7c0b0;color:var(--sage-dark);font:italic 12px 'Playfair Display',serif}
 @media(max-width:700px){.sage-model .attention-grid{grid-template-columns:1fr;gap:14px}.sage-model .attention-card{min-height:0;padding:25px 22px}.sage-model .attention-card>p:not(.attention-number){min-height:0}.sage-model .attention-heading{margin:55px auto 30px}}
+
+.sage-model .guestbook-section{background:#f0f0e8}
+.sage-model .guestbook-form{max-width:560px;margin:0 auto;display:grid;gap:15px}
+.sage-model .guestbook-form label{display:grid;gap:8px;font-size:10px;letter-spacing:.06em;color:var(--sage-dark)}
+.sage-model .guestbook-form input,.sage-model .guestbook-form textarea{width:100%;padding:14px;border:1px solid #d8d9cf;background:#fbfaf6;font:12px 'DM Sans',sans-serif;color:var(--ink)}
+.sage-model .guestbook-form button{border:0;background:var(--sage);color:white;padding:15px;letter-spacing:.1em;font:11px 'DM Sans',sans-serif;cursor:pointer}
+.sage-model .guestbook-messages{max-width:900px;margin:38px auto 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.sage-model .guestbook-message{background:#fbfaf6;padding:25px;border:1px solid #e5e8df;text-align:center}
+.sage-model .guestbook-message>span{font:40px 'Playfair Display',serif;color:var(--sage)}
+.sage-model .guestbook-message p{font:italic 15px/1.8 'Playfair Display',serif;color:var(--ink)}
+.sage-model .guestbook-message small{font-size:9px;letter-spacing:.15em;color:var(--sage)}
+.sage-model .guestbook-empty{text-align:center;color:var(--muted);font-size:11px;margin:28px auto}
+.sage-model .form-error{color:#a34f55;font-size:11px;text-align:center}
+@media(max-width:700px){.sage-model .guestbook-messages{grid-template-columns:1fr}}
 </style>
