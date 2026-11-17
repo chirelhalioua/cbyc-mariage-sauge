@@ -116,6 +116,12 @@ function sendReply() {
 
     <section id="practical" class="practical section">
       <div class="section-title"><p class="kicker">POUR PRÉPARER VOTRE VENUE</p><p class="script">Quelques détails pratiques</p><h2>Tout simplement <em>l'essentiel</em></h2></div>
+      <div class="attention-heading"><p class="kicker">LES PETITES ATTENTIONS</p><p class="script">Parce que chaque détail compte</p><h3>Des attentions <em>en plus</em></h3><p>Des espaces complémentaires pour accompagner vos invités et rendre votre invitation encore plus personnelle.</p></div>
+      <div class="attention-grid">
+        <article class="attention-card"><span class="tag optional">Option personnalisable</span><div class="attention-icon">✧</div><p class="attention-number">01 · LE STYLE</p><h3>Dress code</h3><p>Partagez vos envies de couleurs, de tenues ou d'ambiance pour harmoniser cette belle journée.</p><span class="attention-link">Une touche d'élégance</span></article>
+        <article class="attention-card"><span class="tag optional">Option personnalisable</span><div class="attention-icon">⌁</div><p class="attention-number">02 · S'ORGANISER</p><h3>Hébergements & transports</h3><p>Facilitez la venue de vos proches avec vos recommandations d'hôtels, de parkings ou de navettes.</p><span class="attention-link">Tout pour bien arriver</span></article>
+        <article class="attention-card"><span class="tag optional">Option personnalisable</span><div class="attention-icon">♡</div><p class="attention-number">03 · PARTAGER</p><h3>Livre d'or numérique</h3><p>Offrez à vos invités un espace pour déposer un mot doux, un souvenir ou un vœu pour les mariés.</p><span class="attention-link">Des mots à garder</span></article>
+      </div>
       <p class="legend"><span><i class="dot green"></i> Inclus dans la formule</span><span><i class="dot rose"></i> Option en supplément</span></p>
     </section>
     <section id="map" class="map-section section"><div class="section-title"><span class="tag optional">Option personnalisable</span><p class="kicker">TOUS LES CHEMINS MÈNENT À NOUS</p><p class="script">Retrouvez-nous facilement</p><h2>La carte de <em>notre journée</em></h2><p class="map-intro">Une carte interactive personnalisée peut réunir tous les lieux utiles à vos invités : cérémonie, réception, hébergement et stationnement.</p></div><div class="map-frame"><iframe title="Carte du secteur d'Aix-en-Provence" src="https://www.google.com/maps?q=Aix-en-Provence&output=embed" loading="lazy"></iframe></div><div class="map-links"><a href="https://www.google.com/maps/search/?api=1&query=Mas+des+Oliviers+Aix-en-Provence" target="_blank" rel="noopener noreferrer">Itinéraire vers le lieu ↗</a><span>Exemple de carte — les adresses seront personnalisées pour chaque événement.</span></div></section>
@@ -223,4 +229,18 @@ function sendReply() {
 .sage-model .back-to-top:hover{background:var(--sage-dark);transform:translateY(-5px);box-shadow:0 11px 26px #34392f35}
 @media(max-width:700px){.sage-model .back-to-top{right:16px;bottom:18px;width:44px;height:44px;font-size:24px}}
 @media(prefers-reduced-motion:reduce){.sage-model{scroll-behavior:auto}}
+
+.sage-model .attention-heading{text-align:center;max-width:620px;margin:68px auto 38px}
+.sage-model .attention-heading h3{font:400 38px 'Italiana',serif;margin:12px 0}
+.sage-model .attention-heading h3 em{font-family:'Playfair Display',serif;color:var(--sage);font-weight:400}
+.sage-model .attention-heading>p:last-child{font-size:12px;line-height:1.9;color:var(--muted);max-width:500px;margin:0 auto}
+.sage-model .attention-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;max-width:1100px;margin:0 auto}
+.sage-model .attention-card{padding:28px 24px 30px;background:#f1f2eb;border:1px solid #e8ebe2;min-height:300px;transition:transform .3s ease,box-shadow .3s ease}
+.sage-model .attention-card:hover{transform:translateY(-6px);box-shadow:0 14px 30px #34392f12}
+.sage-model .attention-icon{font:34px 'Italiana',serif;color:var(--sage);margin:25px 0 16px}
+.sage-model .attention-number{font-size:8px!important;letter-spacing:.18em;color:var(--sage)!important;font-weight:600}
+.sage-model .attention-card h3{font:26px 'Italiana',serif;margin:8px 0 12px}
+.sage-model .attention-card>p:not(.attention-number){font-size:11px;line-height:1.9;color:var(--muted);min-height:82px}
+.sage-model .attention-link{display:inline-block;margin-top:12px;padding-bottom:5px;border-bottom:1px solid #b7c0b0;color:var(--sage-dark);font:italic 12px 'Playfair Display',serif}
+@media(max-width:700px){.sage-model .attention-grid{grid-template-columns:1fr;gap:14px}.sage-model .attention-card{min-height:0;padding:25px 22px}.sage-model .attention-card>p:not(.attention-number){min-height:0}.sage-model .attention-heading{margin:55px auto 30px}}
 </style>
