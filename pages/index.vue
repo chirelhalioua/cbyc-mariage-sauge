@@ -166,13 +166,6 @@ async function sendReply() {
 
     <section id="practical" class="practical section">
       <div class="section-title"><p class="kicker">POUR PRÉPARER VOTRE VENUE</p><p class="script">Quelques détails pratiques</p><h2>Tout simplement <em>l'essentiel</em></h2></div>
-      <div class="attention-heading"><p class="kicker">LES PETITES ATTENTIONS</p><p class="script">Parce que chaque détail compte</p><h3>Des attentions <em>en plus</em></h3><p>Des espaces complémentaires pour accompagner vos invités et rendre votre invitation encore plus personnelle.</p></div>
-      <div class="attention-grid">
-        <a class="attention-card attention-card-link" href="#dress-code"><span class="tag optional">Option personnalisable</span><div class="attention-icon">✧</div><p class="attention-number">01 · LE STYLE</p><h3>Dress code</h3><span class="attention-link">Voir les inspirations ↗</span></a>
-        <a class="attention-card attention-card-link" href="#accommodations"><span class="tag optional">Option personnalisable</span><div class="attention-icon">⌁</div><p class="attention-number">02 · S'ORGANISER</p><h3>Hébergements & transports</h3><span class="attention-link">Préparer votre venue ↗</span></a>
-        <a class="attention-card attention-card-link" href="#guestbook"><span class="tag optional">Option personnalisable</span><div class="attention-icon">♡</div><p class="attention-number">03 · PARTAGER</p><h3>Livre d'or numérique</h3><span class="attention-link">Laisser un petit mot ↗</span></a>
-      </div>
-      <p class="legend"><span><i class="dot green"></i> Inclus dans la formule</span><span><i class="dot rose"></i> Option en supplément</span></p>
     </section>
     <section id="dress-code" class="details-feature section">
       <div class="section-title"><span class="tag optional">Option personnalisable</span><p class="kicker">LE PETIT CONSEIL DES MARIÉS</p><p class="script">Une harmonie tout en douceur</p><h2>Le <em>dress code</em></h2><p class="feature-intro">Pour cette journée en Provence, nous vous proposons une palette naturelle et lumineuse. Faites-vous plaisir en choisissant une tenue dans ces tonalités.</p></div>
