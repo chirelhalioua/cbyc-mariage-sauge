@@ -140,6 +140,7 @@ function sendReply() {
       <div v-else class="success"><h3>Merci {{ guestName }} !</h3><p>Votre réponse a bien été prise en compte dans cette démonstration.</p></div>
       <small class="demo-note">Modèle de démonstration : le formulaire n'enregistre et n'envoie pas encore les réponses.</small>
     </section>
+    <a class="back-to-top" href="#top" aria-label="Remonter en haut du site" title="Retour en haut">↑</a>
     <footer><div class="footer-brand">É <span>&</span> A</div><p class="script">À très bientôt pour célébrer l'amour</p><small>INVITATION IMAGINÉE AVEC <a href="https://www.cbyc-invitations.fr/" target="_blank" rel="noopener noreferrer">C BY C</a></small></footer>
   </main>
 </template>
@@ -211,4 +212,10 @@ function sendReply() {
   .sage-model .site-header{justify-content:space-between}
   .sage-model .site-header nav{z-index:21}
 }
+
+.sage-model{scroll-behavior:smooth}
+.sage-model .back-to-top{position:fixed;right:22px;bottom:24px;z-index:30;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--sage);color:#fff;border:1px solid #82917c;box-shadow:0 7px 22px #34392f30;font:26px/1 'DM Sans',sans-serif;text-decoration:none;transition:transform .25s ease,background .25s ease,box-shadow .25s ease}
+.sage-model .back-to-top:hover{background:var(--sage-dark);transform:translateY(-5px);box-shadow:0 11px 26px #34392f35}
+@media(max-width:700px){.sage-model .back-to-top{right:16px;bottom:18px;width:44px;height:44px;font-size:24px}}
+@media(prefers-reduced-motion:reduce){.sage-model{scroll-behavior:auto}}
 </style>
